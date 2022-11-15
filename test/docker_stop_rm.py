@@ -1,6 +1,6 @@
 import docker
 
-IP = '0.0.0.0'
+IP = 'localhost'
 PORT = '5000'
 img_tag = 'test-img'
 container_name = 'test-container'
