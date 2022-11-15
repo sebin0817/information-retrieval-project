@@ -1,9 +1,16 @@
+import jsonlines
+import random
+
 class Ranker(object):
 
     def __init__(self):
         self.idx = None
 
     def index(self):
+        self.idx = []
+        with jsonlines.open('./data/livivo/documents/livivo_testset.jsonl') as reader:
+            for obj in reader:
+                self.idx.append(obj['DBRECORDID'])
         pass
 
     def rank_publications(self, query, page, rpp):
@@ -25,6 +32,10 @@ class Recommender(object):
         self.idx = None
 
     def index(self):
+        self.idx = []
+        with jsonlines.open('./data/livivo/documents/livivo_testset.jsonl') as reader:
+            for obj in reader:
+                self.idx.append(obj['DBRECORDID'])
         pass
 
     def recommend_datasets(self, item_id, page, rpp):
@@ -41,7 +52,7 @@ class Recommender(object):
 
     def recommend_publications(self, item_id, page, rpp):
 
-        itemlist = []
+        itemlist = random.choices(self.idx, k=rpp)
 
         return {
             'page': page,
