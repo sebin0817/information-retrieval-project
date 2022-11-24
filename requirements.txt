@@ -1,2 +1,4 @@
 flask
 jsonlines
+nltk
+pandas
