@@ -14,11 +14,10 @@ class Ranker(object):
         self.idx = None
 
     def index(self):
-        self.idx = []
         with jsonlines.open('./data/livivo/documents/livivo_research_data.jsonl') as reader:
             for obj in reader:
                 # self.idx.append(obj['ABSTRACT'])
-                doc = pd.Series(obj.get('ABSTRACT'))
+                doc = pd.Series(obj.get('ABSTRACT'), dtype='str')
                 doc = doc.apply(lambda x: self.strip_accents(x))
                 tokenized = (doc.apply(lambda x: self.tokenize_text(x)))
                 inverted_doc_indexes = {}
@@ -33,7 +32,7 @@ class Ranker(object):
                     doc_index = self.inverted_index(words)
                     self.inverted_index_add(inverted_doc_indexes, i, doc_index)
                     files_with_index.append(i)
-
+            self.idx = doc_index
         pass
 
     def rank_publications(self, query, page, rpp):
