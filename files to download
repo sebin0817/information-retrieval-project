@@ -1,0 +1,5 @@
+https://dl.fbaipublicfiles.com/fasttext/vectors-wiki/wiki.en.vec
+https://dl.fbaipublicfiles.com/fasttext/vectors-wiki/wiki.de.vec
+https://dl.fbaipublicfiles.com/fasttext/vectors-wiki/wiki.fr.vec
+
+put fasttext.py,irnoteebokk and the above 3 files in the same directory
